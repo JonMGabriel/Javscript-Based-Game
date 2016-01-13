@@ -16,4 +16,4 @@ Expect the unexpected
 Action and Reaction
 
 CISC479: Client-Side Engineering
-by Jon Gabriel
+by Jon Gabriel (gabrielj@udel.edu) &
