@@ -16,7 +16,7 @@ Expect the unexpected
 Action and Reaction
 
 CISC479: Client-Side Engineering
-by Jon Gabriel (gabrielj@udel.edu) & David Geron-Neubauer
+by Jon Gabriel (gabrielj@udel.edu) & David Geron-Neubauer (davidgn@udel.edu github:commandogn)
 
 Game ideas:
 
@@ -44,8 +44,34 @@ JavaScript comments: This would involve javascript inputs
 The user inputs would be binded to a possible switch case
 of rules that will be matching strings.
 - Have everything be toUpperCase or toLowerCase to be consistent with rule creation
+-       David - is there an ignoreCase?
+
 
 HTML/CSS comments: Need a cool interface
 
 
         
+David - thoughts:
+        Arbitrary player amount? AI players with varying random failure rate?
+        
+
+
+
+
+
+
+David - additional game ideas:
+        Pong with either windows or inner sections
+        Image/numbers puzzle
+                Tiled board, need to put tiles back in order / complete the puzzle
+        Simon/BopIt-type memory game
+        Othello
+        Connect4
+        Blackjack
+        Tron
+        Pacman
+        Minesweeper
+        A basic RPG
+                Text or Visual based
+        Bomberman
+        Maze game with some twist
