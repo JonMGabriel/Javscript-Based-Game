@@ -16,4 +16,23 @@ Expect the unexpected
 Action and Reaction
 
 CISC479: Client-Side Engineering
-by Jon Gabriel (gabrielj@udel.edu) &
+by Jon Gabriel (gabrielj@udel.edu) & David Geron-Neubauer
+
+Game ideas:
+
+Expect the unexpected theme:
+    - logic game that generates a set of rules as the game goes on
+    - game counts from 1-21
+        - At the beginning of the game 7 and 14 are the only
+        numbers with rules (as the game counts, you input 14
+        when the number 7 comes up; and you input 7 when the number
+        14 comes up.
+        - As you complete the game and reach 21, you create a rule
+        for a new number (for example, when you count to the #3 your
+        input string, in order to keep counting, is to write
+        "butts" instead of just the #3)
+        - As the game continues, almost all numbers from 1-21 will
+        have a different rule associated to it (ultimatly increasing
+        with difficulty as more rules are necessary to be remembered
+        by the player)
+        
