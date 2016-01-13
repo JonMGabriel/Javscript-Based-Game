@@ -55,11 +55,6 @@ David - thoughts:
         Arbitrary player amount? AI players with varying random failure rate?
         
 
-
-
-
-
-
 David - additional game ideas:
         Pong with either windows or inner sections
         Image/numbers puzzle
