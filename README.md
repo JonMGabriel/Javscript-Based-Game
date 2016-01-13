@@ -20,7 +20,7 @@ by Jon Gabriel (gabrielj@udel.edu) & David Geron-Neubauer
 
 Game ideas:
 
-Expect the unexpected theme:
+Expect the unexpected theme (21):
     - logic game that generates a set of rules as the game goes on
     - game counts from 1-21
         - At the beginning of the game 7 and 14 are the only
@@ -34,5 +34,18 @@ Expect the unexpected theme:
         - As the game continues, almost all numbers from 1-21 will
         have a different rule associated to it (ultimatly increasing
         with difficulty as more rules are necessary to be remembered
-        by the player)
+        by the players
+    - Have two players and profiles (socket and IOs)
+        - Hints: for certain amount of times rule is missed by a user
+        - Adds some taunting text as the user types in a rule
+            - "Are you sure?"
+            
+JavaScript comments: This would involve javascript inputs
+The user inputs would be binded to a possible switch case
+of rules that will be matching strings.
+- Have everything be toUpperCase or toLowerCase to be consistent with rule creation
+
+HTML/CSS comments: Need a cool interface
+
+
         
