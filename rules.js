@@ -5,7 +5,7 @@
 
 var temp = function(){
     // console.log("This is temporary");
-    alert("Added to log: TEMP FUNC");
+    alert("TEMP FUNC");
 };
 
 var $body = document.querySelectorAll('body');
@@ -18,3 +18,18 @@ $ruleButton.addEventListener('click', temp);
         //window.onload?
         //document DOM ready - onload?
     // or move <script> to bottom of html document
+    
+    function reveal (image) {
+        /* function takes in an image (hidden with CSS) and produces the image revealed
+        without blocked out CSS*/
+        
+        // still need to write this
+    };
+    
+    // on click the image is revealed
+    document.getElementById("lion").addEventListener("click", reveal);
+    
+    /* need to set a rule that no more than two images can be revealed
+    at the same time */
+    
+    /* also need to implement a short delay if an incorrect guess is made */

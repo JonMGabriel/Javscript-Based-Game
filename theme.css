@@ -6,10 +6,20 @@ CSS page for index.html
 
 body {
     background-color: #fff;
+    font-family: 'Roboto Slab', serif;
 }
 
 h1 {
     font-family: 'Roboto Slab', serif;
     font-size: 20px;
-    
+}
+
+.grid {
+    display: inline-block;
+    padding-top: 20px;
+}
+
+.images {
+    width: 270px;
+    height: auto;
 }

@@ -20,53 +20,14 @@ by Jon Gabriel (gabrielj@udel.edu) & David Geron-Neubauer (davidgn@udel.edu gith
 
 Game ideas:
 
-Expect the unexpected theme (21):
-    - logic game that generates a set of rules as the game goes on
-    - game counts from 1-21
-        - At the beginning of the game 7 and 14 are the only
-        numbers with rules (as the game counts, you input 14
-        when the number 7 comes up; and you input 7 when the number
-        14 comes up.
-        - As you complete the game and reach 21, you create a rule
-        for a new number (for example, when you count to the #3 your
-        input string, in order to keep counting, is to write
-        "butts" instead of just the #3)
-        - As the game continues, almost all numbers from 1-21 will
-        have a different rule associated to it (ultimatly increasing
-        with difficulty as more rules are necessary to be remembered
-        by the players
-    - Have two players and profiles (socket and IOs)
-        - Hints: for certain amount of times rule is missed by a user
-        - Adds some taunting text as the user types in a rule
-            - "Are you sure?"
-            
-JavaScript comments: This would involve javascript inputs
-The user inputs would be binded to a possible switch case
-of rules that will be matching strings.
-- Have everything be toUpperCase or toLowerCase to be consistent with rule creation
--       David - is there an ignoreCase?
+Latest concept of our idea: Memory matching game with a twist(?)
 
+Theme: "Casual Connections" memory matching
+- The twist or unexpected could be that players have to match sounds
+- instead of images for some tiles.
 
-HTML/CSS comments: Need a cool interface
+- Or maybe certain sounds can also be related to an image (so instead
+- of matching image to image, we can have sounds match to images; like
+- a lion roar and a picture of a lion)
 
-
-        
-David - thoughts:
-        Arbitrary player amount? AI players with varying random failure rate?
-        
-
-David - additional game ideas:
-        Pong with either windows or inner sections
-        Image/numbers puzzle
-                Tiled board, need to put tiles back in order / complete the puzzle
-        Simon/BopIt-type memory game
-        Othello
-        Connect4
-        Blackjack
-        Tron
-        Pacman
-        Minesweeper
-        A basic RPG
-                Text or Visual based
-        Bomberman
-        Maze game with some twist
+- 
