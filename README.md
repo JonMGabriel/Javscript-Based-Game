@@ -30,4 +30,8 @@ Theme: "Casual Connections" memory matching
 - of matching image to image, we can have sounds match to images; like
 - a lion roar and a picture of a lion)
 
-- 
+Twist ideas:
+- Maybe every 3 wrong tries, the board shuffles in a predictably "random" way
+- Swap the two overturned tiles
+- The tile matches must have an order to which they are found
+- If every tile has been overturned at least once, then shuffle the tiles (already matched, obviously stay overturned)
