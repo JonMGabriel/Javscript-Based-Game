@@ -35,6 +35,7 @@ h2 {
 }
 
 .animal{
+    /*maybe we should use flexbox or a different type of layout instead of using padding? idk*/
     width: 300px;
     height: auto;
     padding-top: 10px;
