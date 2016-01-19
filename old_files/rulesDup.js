@@ -41,34 +41,18 @@ var ImageObj = function(img){
 //returns bool to indicate whether the VIEW should flip the tile up or flip both down
 ImageObj.prototype.clicked = function(ev, index, gameBrain){
     if(gameBrain.indexLastFlipped > -1){
-        //////////////////////////////////////////////////////////////////////////////////
-        //////////////////mind this comparison with its hard coding///////////////////////
-        //////////////////////////////////////////////////////////////////////////////////
         if(gameBrain.board[gameBrain.indexLastFlipped].img.classList.item(1) == ev.currentTarget.classList.item(1)){ //i dont like to hardcode the array position, but we may just want to do this. or use id's or mess around with how we do stuff along those lines
-                // console.log("CORRECT MATCH");
+                console.log("CORRECT MATCH");
                 gameBrain.indexLastFlipped = -1;
-                
-                gameBrain.score = gameBrain.score + 10; // adds 10 to existing gameBrain score
-                document.getElementById('num_score').innerHTML = gameBrain.score;
-                
-                var sound = document.getElementById('audioEngine');
-                // sound.play(); //.play doesn't seem to be a built in function
+                // gameBrain.itsAMatch(); //Do score stuff
         }
         else{
-            // console.log("INCORRECT MATCH");
-            gameBrain.board[index].img.revealed = false;
-            gameBrain.board[gameBrain.indexLastFlipped].img.revealed = false;
+            console.log("INCORRECT MATCH");
+            gameBrain.board[index].revealed = false;
+            gameBrain.board[gameBrain.indexLastFlipped].revealed = false;
             gameBrain.indexLastFlipped = -1;
-            if(gameBrain.score == 0 || gameBrain.score == 1){
-                document.getElementById('num_score').innerHTML = "wow you suck, score = 0";
-            }
-            else { // or subtract the score by two
-                gameBrain.score = gameBrain.score - 2;
-                document.getElementById('num_score').innerHTML = gameBrain.score;
-            }
-            // gameBrain.incorrectGuess();
+            // gameBrain.incorrectGuess(); //Do score stuff
             return false; //Returns false if an incorrect match and should flip down both tiles
-            
         }
     }
     else
@@ -135,6 +119,33 @@ var correctGuess = function(element_1, element_2, gameBrain){
 /********* VIEW *********/
 /************************/
 
+/* render (GameBrain -> void)
+        draws the full board
+        triggered on init.; shuffle; ...
+        
+        can be renamed, drawBoard
+*/
+// var render = function(theBrain){
+//   $screen = document.querySelector('#display');
+//   $screen.innerHTML = "";
+//   theBrain.heroes.forEach(function(hero){
+//     $hero = document.createElement('div');
+//     $hero.classList.add('hero');
+//     if (hero.sick){
+//       $hero.classList.add('sick');
+//     }
+//     $hero.style.left = (hero.x*squareWidth).toString()+"px";
+//     $hero.style.top = (hero.y*squareWidth).toString()+"px";
+//     $hero.innerHTML = hero.name;
+//     $screen.appendChild($hero);
+//   });
+
+
+    // theBrain.board.forEach(....);
+// };
+
+
+
 /*  func: reveal (image -> image)
     reveal takes in an image (hidden with CSS) and produces the image revealed
     without blocked out CSS still need to write this */
@@ -142,31 +153,29 @@ var reveal = function (image) {
     var image_list = []; // still needs to grab the CSS
 };
 
+// give it an array index?
+// does the CSS flip stuff on the CSS container/image (not really sure how exactly to do animation/flip thing yet)
+// gets what to do stuff on based on the object referenced from the array index?
 
+// Reading up on CSS animations
 
-        // http://codepen.io/JonMGabriel/pen/PZJVQv
-        // using this example to try and flip image
-        // $('.flip-container').click(function (e) {
-        //     $(this).toggleClass('flipped');
-        // });
 
 var updateCSSFlip = function(anImage, flipUp){ //so we may not even really need this as a function?
     if(flipUp){
         anImage.style.backgroundColor = "blue";
         
-        // anImage.classList.toggle('flipped');
-        // console.log("flipped");
-        
-        // console.log(anImage.parentElement.parentElement);
+        anImage.classList.toggle('flipped');
+        console.log("flipped");
     }
     else{
         anImage.style.backgroundColor = "red";
         
-        // anImage.classList.toggle('flipped');
-        // console.log("unflipped");
+        anImage.classList.toggle('flipped');
+        console.log("unflipped");
     }
-        anImage.parentElement.parentElement.classList.toggle('flipped');
 };
+
+
 
 // sound function (on correct match, sound is invoked)
 //var sound = function () {
@@ -191,6 +200,7 @@ var GameBrain = function(imageList){
     this.keepPlaying = true;
     this.board = imageList;
     this.indexLastFlipped = -1;
+    // this.indexLastFlipped = 1; //test
     
     this.correctGuesses = 0;
     this.incorrectGuesses = 0;
@@ -218,29 +228,24 @@ var GameBrain = function(imageList){
 var startApp = function(){
     document.body.removeEventListener('click', startApp);
     
-    var imageEl = document.getElementsByClassName("animal_icon");
+    var imageEl = document.getElementsByClassName("animal");
     var imageList = [];
     Array.prototype.forEach.call(imageEl,
         function(currentValue, index, array){
             imageList.push(new ImageObj(currentValue));
-            console.log(currentValue); ////////////////////////////test
-            
             currentValue.addEventListener("click",
                 ev=>{
                     if(!ev.currentTarget.revealed){ //if this is not already revealed
                         updateCSSFlip(ev.currentTarget, true); //In either/any case, we'll always be flipping up the current target here
                         
                         var backupIndex = gameBrain.indexLastFlipped;
-                        var incorrectMatch = !ImageObj.prototype.clicked(ev, index, gameBrain);
-                        if(incorrectMatch){ //indexLastFlipped will be greater than -1 if this has been triggered
-                            window.setTimeout(function(cT, gB, bI){
-                                updateCSSFlip(cT, false);
-                                updateCSSFlip(gB.board[bI].img, false);
-                            }, 1250, ev.currentTarget, gameBrain, backupIndex);
+                        var flipItOrNaw = ImageObj.prototype.clicked(ev, index, gameBrain);
+                        if(!flipItOrNaw){ //indexLastFlipped will be greater than -1 if this has been triggered
+                            updateCSSFlip(ev.currentTarget, false);
+                            updateCSSFlip(gameBrain.board[backupIndex].img, false);
                         }
                     }
-                    // else console.log("CLICKED ON SAME IMAGE");
-                    // else console.log("CLICKED ON SAME IMAGE" + "\t" + ev.currentTarget.revealed);
+                    else console.log("CLICKED ON SAME IMAGE");
                 });
     });
     var gameBrain = new GameBrain(imageList);
@@ -263,3 +268,6 @@ var startApp = function(){
 
 document.addEventListener("DOMContentLoaded", startApp);
 // maybe on load event, addEventListener to a start button
+
+
+

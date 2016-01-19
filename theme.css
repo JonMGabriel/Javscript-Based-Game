@@ -4,6 +4,7 @@ CSS page for index.html
 
 */
 
+
 body {
     background-color: #00cc99;
     font-family: 'Roboto Slab', serif;
@@ -25,19 +26,105 @@ h2 {
 }
 
 #rule_check {
-    position: absolute;
-    right: 50%;
-    left: 50%;
-    top: 24%;
-    padding-left: 20px;
-    padding-right: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     font-family: 'Roboto Slab', serif;
 }
 
-.animal{
-    /*maybe we should use flexbox or a different type of layout instead of using padding? idk*/
+
+
+
+.animal {
     width: 300px;
     height: auto;
-    padding-top: 10px;
-    padding-right: 10px;
+    padding-top: 20px;
+    
+    cursor: pointer;
+    transition: all 1s ease-in-out; 
+}
+
+#num_score {
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+
+/*#main_container{*/
+/*    position: relative;*/
+/*}*/
+/*#main_container > *{*/
+    /*position: absolute;*/
+    /*top: 0%;*/
+/*}*/
+
+/* FLIP CSS */
+.flip-container {
+    transition: all 0.2s;
+    perspective: 900px;
+    display: inline-block;
+    padding-left: 5px;
+    margin: 0 auto;
+    width: 300px;
+    height: auto;
+}
+.flip-container > *{
+    /*position: absolute;*/
+    /*top: 0%;*/
+    /*right: 50px;*/
+}
+
+.front, .back {
+  text-align: left;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: all 0.4s;
+  width: 300px;
+}
+
+/*
+.front {
+    position: absolute;
+    top: 0;
+    background-color: #000000;
+    width: 300px;
+    min-height: 100%;
+} */
+
+.front {
+    position: absolute;
+    transform: rotateY(0deg);
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+
+.flipped .back {
+  transform: rotateY(0deg);
+}
+
+.flipped .front {
+  transform: rotateY(180deg);
+}
+
+img{
+    width: 300px;
+    height: auto;
+}
+
+#images {
+    margin: 0 auto;
+}
+
+/* need to implement a responsive middle for tables */
+
+#match_image {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid black;
+    top: 30%;
+    left: 10%;
 }
