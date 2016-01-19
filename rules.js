@@ -4,16 +4,10 @@
 //-Implement: updateCSSFlip(), correctGuess(), and incorrectGuess()
 
 
-//***bonus*** Implement score (& high score?)
 //***bonus*** shuffle()
 
 //***bonus*** implement a size (e.g. 5x5) input box. press startgame button, draws board
 
-
-// updateCSSflip(): it's using the transition CSS but it isn't using the
-// flip CSS code. http://codepen.io/JonMGabriel/pen/PZJVQv <-- my code pen
-// that doesn't seem to transfer over to our design. Still trying to implement
-// the animation to cells in our table.
 
 // correctGuess(): so I kind of wrote a generic guess function. I have not tested it yet
 // but the function, hypothetically, should return true if two guesses are a match
@@ -51,8 +45,7 @@ ImageObj.prototype.clicked = function(ev, index, gameBrain){
                 gameBrain.score = gameBrain.score + 10; // adds 10 to existing gameBrain score
                 document.getElementById('num_score').innerHTML = gameBrain.score;
                 
-                var sound = document.getElementById('audioEngine');
-                // sound.play(); //.play doesn't seem to be a built in function
+                document.getElementById("reset").addEventListener("click", gameBrain.score = 0);
         }
         else{
             // console.log("INCORRECT MATCH");
@@ -67,6 +60,7 @@ ImageObj.prototype.clicked = function(ev, index, gameBrain){
                 document.getElementById('num_score').innerHTML = gameBrain.score;
             }
             // gameBrain.incorrectGuess();
+            document.getElementById("reset").addEventListener("click", gameBrain.score = 0);
             return false; //Returns false if an incorrect match and should flip down both tiles
             
         }
@@ -78,6 +72,17 @@ ImageObj.prototype.clicked = function(ev, index, gameBrain){
     return true; //Returns false if an incorrect match, true otherwise
 };
 
+// playing sounds is bullshit
+var playSound = function() {
+    var x = document.createElement("AUDIO");
+}
+
+// array of images used for shuffle / reset
+var images = [
+    "http://i4.mirror.co.uk/incoming/article5803160.ece/ALTERNATES/s615/Lion-park.jpg", 
+"http://theblot.com/wp-content/uploads/2013/11/dragonsnake.jpg", "http://everythreeweekly.com/wp-content/uploads/2015/12/zebra-on-the-Serengeti-dines-casually-near-road.jpg", "http://dreamatico.com/data_images/animals/animals-4.jpg",  ];
+
+var imageNames = ["lion1", "snake1", "zebra1", "puppy1", ];
 //      func incorrectGuess()
 //          gameBrain.incorrectGuesses++;
         // if(gameBrain.incorrectGuesses % 3 > 3)
@@ -135,50 +140,29 @@ var correctGuess = function(element_1, element_2, gameBrain){
 /********* VIEW *********/
 /************************/
 
-/*  func: reveal (image -> image)
-    reveal takes in an image (hidden with CSS) and produces the image revealed
-    without blocked out CSS still need to write this */
-var reveal = function (image) {
-    var image_list = []; // still needs to grab the CSS
-};
-
-
-
-        // http://codepen.io/JonMGabriel/pen/PZJVQv
-        // using this example to try and flip image
-        // $('.flip-container').click(function (e) {
-        //     $(this).toggleClass('flipped');
-        // });
+// http://codepen.io/JonMGabriel/pen/PZJVQv
+// using this example to try and flip image
+// $('.flip-container').click(function (e) {
+//     $(this).toggleClass('flipped');
+// });
 
 var updateCSSFlip = function(anImage, flipUp){ //so we may not even really need this as a function?
-    if(flipUp){
-        anImage.style.backgroundColor = "blue";
+    // if(flipUp){
+        // anImage.style.backgroundColor = "blue";
         
         // anImage.classList.toggle('flipped');
         // console.log("flipped");
         
         // console.log(anImage.parentElement.parentElement);
-    }
-    else{
-        anImage.style.backgroundColor = "red";
+    // }
+    // else{
+        // anImage.style.backgroundColor = "red";
         
         // anImage.classList.toggle('flipped');
         // console.log("unflipped");
-    }
-        anImage.parentElement.parentElement.classList.toggle('flipped');
+    // }
+    anImage.parentElement.parentElement.classList.toggle('flipped');
 };
-
-// sound function (on correct match, sound is invoked)
-//var sound = function () {
-//};
-
-var cards = [
-    {name: "lion", img: "http://i4.mirror.co.uk/incoming/article5803160.ece/ALTERNATES/s615/Lion-park.jpg",
-        id: 1},
-    {name: "snake", img: "http://theblot.com/wp-content/uploads/2013/11/dragonsnake.jpg",
-        id: 2},
-    {name: "zebra", img: "http://everythreeweekly.com/wp-content/uploads/2015/12/zebra-on-the-Serengeti-dines-casually-near-road.jpg",
-        id: 3} ];
 
 /************************/
 /****** CONTROLLER ******/
@@ -205,6 +189,30 @@ var GameBrain = function(imageList){
     this.quit = function(){
         theBrain.keepPlaying = false;
     };
+    
+    
+    /* reset should reset the score, grab images and
+    flip them back*/
+    var reset = function(){
+        
+        this.indexLastFlipped = -1;
+        this.correctGuesses = 0;
+        this.incorrectGuesses = 0;
+        this.score = 0;
+        
+        var imagesToFlip = document.getElementsByClassName("animal_icon")
+        Array.prototype.forEach.call(imagesToFlip,
+            function(currentValue, index, array){
+                if(currentValue.revealed){
+                    updateCSSFlip(currentValue, false);
+                    currentValue.revealed = false;
+                }
+            });
+        
+        
+    };
+    
+    document.getElementById("reset").addEventListener("click", reset);
 };
 
 
@@ -215,6 +223,8 @@ var GameBrain = function(imageList){
 /************************/
 /********* MAIN *********/
 /************************/
+
+
 var startApp = function(){
     document.body.removeEventListener('click', startApp);
     
@@ -262,4 +272,5 @@ var startApp = function(){
 };
 
 document.addEventListener("DOMContentLoaded", startApp);
+
 // maybe on load event, addEventListener to a start button
