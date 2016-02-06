@@ -15,9 +15,6 @@ Circle of life
 Expect the unexpected
 Action and Reaction
 
-CISC479: Client-Side Engineering
-by Jon Gabriel (gabrielj@udel.edu) & David Geron-Neubauer (davidgn@udel.edu github:commandogn)
-
 Game ideas:
 
 Latest concept of our idea: Memory matching game with a twist(?)
